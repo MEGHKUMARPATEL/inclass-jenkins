@@ -1,16 +1,19 @@
 pipeline {
     agent {
-        docker {
-            image 'node:20.18.0-alpine3.20'
-            args '-w /workspace/My-Project -v /c/Users/manav/.jenkins/workspace/My-Project:/workspace/My-Project'
-        }
+        label '!windows'
     }
+
+    environment {
+        DISABLE_AUTH = 'true'
+        DB_ENGINE    = 'sqlite'
+    }
+
     stages {
         stage('Build') {
             steps {
-                // Your build steps here
-                sh 'node --version'
+                echo "Database engine is ${DB_ENGINE}"
+                echo "DISABLE_AUTH is ${DISABLE_AUTH}"
+                sh 'printenv'
             }
         }
     }
-}
