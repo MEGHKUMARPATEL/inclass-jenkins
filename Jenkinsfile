@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'node:20.18.0-alpine3.20'
-            args '-u root:root' // This might help with permissions issues
+            args '-u root:root -w /c/Users/manav/.jenkins/workspace/My-Project' // Adjusting path
         }
     }
     stages {
